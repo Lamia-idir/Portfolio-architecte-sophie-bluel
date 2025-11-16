@@ -186,3 +186,38 @@ footer nav ul {
 	margin: 2em
 }
 
+/* CSS BOUTON FILTRES  */
+.filtres {
+  display: flex;
+  justify-content: center;
+  gap: 20px;              /* espace entre les boutons */
+  margin-bottom: 60px;
+}
+
+/* Style de base des boutons */
+.filtres button {
+  padding: 10px 30px;
+  font-size: 16px;
+  font-family: "Syne", sans-serif;
+
+  border: 2px solid #1D6154;  /* contour vert */
+  border-radius: 25px;        /* bien arrondi */
+  background-color: #ffffff;  /* fond blanc */
+
+  color: #1D6154;             /* texte vert */
+  cursor: pointer;
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Bouton actif (ex : Tous au début) */
+.filtres button.active {
+  background-color: #1D6154;  /* fond vert plein */
+  color: #ffffff;             /* texte blanc */
+}
+
+/* Effet au survol */
+.filtres button:hover {
+  background-color: #1D6154;
+  color: #ffffff;
+   }
