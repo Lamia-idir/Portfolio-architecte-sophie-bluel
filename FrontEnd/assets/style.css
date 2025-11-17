@@ -325,9 +325,6 @@ footer nav ul {
 .edit-area i {
   font-size: 16px;
 }
-.hidden{
-	display: none;
-}
 
 /* CSS MODE EDITION  */
 .edition {
@@ -345,7 +342,6 @@ footer nav ul {
     gap: 10px;
 }
 
-
 .edition button {
     background: none;
     border: none;
@@ -361,4 +357,7 @@ footer nav ul {
 .edition span {
     font-size: 14px;
     letter-spacing: 0.5px;
+}
+.hidden{
+	display: none;
 }
