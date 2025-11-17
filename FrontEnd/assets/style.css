@@ -94,11 +94,22 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	text-decoration: none;
+}
+nav li a {
+	text-decoration: none;
 }
 
 li:hover {
 	color: #B1663C;
 	text-decoration: none;
+}
+li a:hover {
+	color: #B1663C;
+
+}
+.active {
+ font-weight: bold;
 }
 #introduction {
 	display: flex;
@@ -213,7 +224,6 @@ footer nav ul {
   background-color: #1D6154;  /* fond vert plein */
   color: #ffffff;             /* texte blanc */
 }
-
 
   /* CSS PAGE DE CONNEXTION  */
   .login-container {
