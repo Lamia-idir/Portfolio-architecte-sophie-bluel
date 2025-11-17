@@ -361,3 +361,10 @@ footer nav ul {
 .hidden{
 	display: none;
 }
+
+/*                error massage  */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}

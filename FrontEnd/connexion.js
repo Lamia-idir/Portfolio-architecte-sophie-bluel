@@ -27,6 +27,7 @@ loginForm.addEventListener("submit", async (event) => {
 
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+   console.log("Tentative de connexion avec :", email, password);
 
   try {
     const response = await fetch("http://localhost:5678/api/users/login", {
