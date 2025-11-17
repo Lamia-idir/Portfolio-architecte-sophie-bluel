@@ -94,10 +94,11 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
-	text-decoration: none;
+	
 }
 nav li a {
 	text-decoration: none;
+	color: inherit;
 }
 
 li:hover {
@@ -196,7 +197,8 @@ input[type="submit"]{
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
+	
 }
 
 /* CSS BOUTON FILTRES  */
@@ -293,4 +295,70 @@ footer nav ul {
   color: #555;
   text-decoration: underline;
   align-self: center;
+}
+
+/* bouton modifier */
+
+
+.title-edit {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;   /* ⭐ Alignement parfait */
+  gap: 20px;
+}
+
+.edit-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;                       /* espace icône ↔ texte */
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.edit-area button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.edit-area i {
+  font-size: 16px;
+}
+.hidden{
+	display: none;
+}
+
+/* CSS MODE EDITION  */
+.edition {
+    width: 100vw;          /* largeur totale de l'écran */
+    margin-left: calc(50% - 50vw);  /* enlève les marges du parent */
+    margin-right: calc(50% - 50vw);
+    
+    background-color: black;
+    color: white;
+
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.edition button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.edition i {
+    font-size: 18px;
+}
+
+.edition span {
+    font-size: 14px;
+    letter-spacing: 0.5px;
 }

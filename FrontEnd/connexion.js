@@ -12,3 +12,47 @@
       link.classList.add("active");
     }
   });
+
+
+
+
+//   connexion admin 
+const loginForm = document.getElementById("login-form");
+const errorMsg = document.getElementById("login-error");
+
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault(); // empêche le rafraîchissement de la page
+
+  errorMsg.textContent = ""; // reset du message d’erreur
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    const response = await fetch("http://localhost:5678/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!response.ok) {
+      // mauvais identifiants ou autre erreur
+      errorMsg.textContent = "E-mail ou mot de passe incorrect.";
+      return;
+    }
+
+    const data = await response.json();
+
+    // 👉 on stocke le token pour les futures requêtes (modifications, suppression…)
+    localStorage.setItem("token", data.token);
+
+    // 👉 redirection vers la page d’accueil
+    window.location.href = "index.html";
+
+  } catch (error) {
+    console.error("Erreur réseau :", error);
+    errorMsg.textContent = "Une erreur est survenue. Veuillez réessayer.";
+  }
+});

@@ -10,8 +10,14 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="galerie.js" defer></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
+	<div class="edition">
+		    <button id="edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+		     <span>mode édition</span>
+		  </div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
@@ -36,8 +42,15 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<div class="filtres"></div>
+	  <div class="title-edit">
+		   <h2>Mes Projets</h2>
+		  <div class="edit-area hidden">
+		    <button id="edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+		     <span>modifier</span>
+		  </div>
+	  </div>
+		 <div class="filtres"></div>
+		
 		<div class="gallery">
 			<!-- <figure>
 				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
