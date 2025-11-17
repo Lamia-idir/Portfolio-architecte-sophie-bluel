@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: #F8F0F0;
 }
 ol, ul {
 	list-style: none;
@@ -97,6 +98,7 @@ nav li {
 
 li:hover {
 	color: #B1663C;
+	text-decoration: none;
 }
 #introduction {
 	display: flex;
@@ -198,15 +200,11 @@ footer nav ul {
 .filtres button {
   padding: 10px 30px;
   font-size: 16px;
-  font-family: "Syne", sans-serif;
-
   border: 2px solid #1D6154;  /* contour vert */
   border-radius: 25px;        /* bien arrondi */
   background-color: #ffffff;  /* fond blanc */
-
   color: #1D6154;             /* texte vert */
   cursor: pointer;
-
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -216,16 +214,73 @@ footer nav ul {
   color: #ffffff;             /* texte blanc */
 }
 
-/* Effet au survol */
-.filtres button:hover {
-  background-color: #1D6154;
-  color: #ffffff;
-   }
 
-   /*     css lien li  */
-   header nav ul li a {
-  text-decoration: none;    
-  color: inherit;           
- 
+  /* CSS PAGE DE CONNEXTION  */
+  .login-container {
+  text-align: center;
 }
 
+/* Titre Log In */
+.login-container h2 {
+  margin-bottom: 24px;
+  color: #0d6b4a;                 /* vert foncé */
+  font-weight: 600;
+}
+
+/* Formulaire */
+#login-form {
+  width: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Labels */
+#login-form label {
+  text-align: left;
+  font-size: 0.9rem;
+  color: #444;
+  margin-top: 6px;
+}
+
+/* Champs de saisie */
+#login-form input[type="email"],
+#login-form input[type="password"] {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #e3e3e3;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  outline: none;
+}
+
+#login-form input:focus {
+  border-color: #0d6b4a;
+}
+
+/* Bouton Se connecter */
+.btn-login {
+  margin-top: 14px;
+  padding: 10px 24px;
+  border-radius: 999px;           /* effet pill */
+  border: none;
+  background-color: #0d6b4a;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  align-self: center;
+}
+
+.btn-login:hover {
+  background-color: #138f63;
+}
+
+/* Lien Mot de passe oublié */
+.forgot {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #555;
+  text-decoration: underline;
+  align-self: center;
+}
