@@ -1,48 +1,8 @@
-// // Cette fonction va récupérer les travaux (works) depuis ton back-end
-// async function getWorks() {
-//   const response = await fetch("http://localhost:5678/api/works");
-//   const works = await response.json();
-//   console.log("works récupérés :", works);
-//   return works;
-// }
-
-// // Cette fonction va afficher les travaux dans la galerie
-// async function displayGallery() {
-//   try {
-//     const works = await getWorks();
-//     const gallery = document.querySelector(".gallery");
-
-//     // On vide la galerie au cas où
-//     gallery.innerHTML = "";
-
-//     // Pour chaque work, on crée un <figure> avec une <img> et un <figcaption>
-//     works.forEach(work => {
-//       const figure = document.createElement("figure");
-
-//       const img = document.createElement("img");
-//       img.src = work.imageUrl;
-//       img.alt = work.title;
-
-//       const figcaption = document.createElement("figcaption");
-//       figcaption.textContent = work.title;
-
-//       figure.appendChild(img);
-//       figure.appendChild(figcaption);
-//       gallery.appendChild(figure);
-//     });
-//   } catch (error) {
-//     console.error("Erreur lors du chargement des travaux :", error);
-//   }
-// }
-
-// // On lance l'affichage quand la page est chargée
-// document.addEventListener("DOMContentLoaded", () => {
-//   displayGallery();
-// });
 
 
 
-// gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+
+// AFFICHAGE DYNAMIQUE POUR les filtres et les travaux
 // URL de base de ton API
 const API_BASE_URL = "http://localhost:5678/api";
 
@@ -135,6 +95,8 @@ async function createFilters() {
   });
 }
 
+
+
 /************ 5. Gérer le style "bouton actif" ************/
 function setActiveButton(activeButton) {
   const allButtons = document.querySelectorAll(".filtres button");
@@ -147,4 +109,47 @@ document.addEventListener("DOMContentLoaded", () => {
   createFilters().catch(err =>
     console.error("Erreur lors de l'initialisation des filtres :", err)
   );
+});
+
+
+// --- GESTION DU MODE ÉDITION SUR LA PAGE D'ACCUEIL
+
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+
+  const editionBanner = document.querySelector(".edition");     // <div class="edition hidden">
+  const editArea      = document.querySelector(".edit-area");   // <div class="edit-area hidden">
+  const filtres       = document.querySelector(".filtres");     // <div class="filtres"></div>
+  const loginLink     = document.querySelector('nav ul li a[href="Connexion.html"]');
+
+  // --- Si l'utilisateur est connecté (token présent) ---
+  if (token) {
+    // Afficher le bandeau "mode édition" et le bouton "modifier"
+    if (editionBanner) editionBanner.classList.remove("hidden");
+    if (editArea)      editArea.classList.remove("hidden");
+
+    // Cacher les filtres
+    if (filtres) filtres.classList.add("hidden");
+
+    // Remplacer "login" par "logout"
+    if (loginLink) {
+      loginLink.textContent = "logout";
+      loginLink.removeAttribute("href");           // on enlève le lien vers Connexion.html
+      loginLink.style.cursor = "pointer";
+
+      // Gestion de la déconnexion
+      loginLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        localStorage.removeItem("token");          // on supprime le token
+        window.location.href = "index.html";       // on recharge la page en mode visiteur
+      });
+    }
+
+  // --- Si l'utilisateur n'est PAS connecté ---
+  } else {
+    if (editionBanner) editionBanner.classList.add("hidden");
+    if (editArea)      editArea.classList.add("hidden");
+    if (filtres)       filtres.classList.remove("hidden");
+    // Le lien "login" reste tel qu'il est (Connexion.html)
+  }
 });

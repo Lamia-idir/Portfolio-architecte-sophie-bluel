@@ -13,9 +13,6 @@
     }
   });
 
-
-
-
 //   connexion admin 
 const loginForm = document.getElementById("login-form");
 const errorMsg = document.getElementById("login-error");
@@ -57,3 +54,4 @@ loginForm.addEventListener("submit", async (event) => {
     errorMsg.textContent = "Une erreur est survenue. Veuillez réessayer.";
   }
 });
+
