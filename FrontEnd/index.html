@@ -10,6 +10,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="galerie.js" defer></script>
+	<script src="Modale.js" defer></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
@@ -54,6 +55,66 @@
 		<div class="gallery">
 		</div>
 	</section>
+	
+	<!-- AJOUT MODAL -->
+
+<div id="modal" class="modal hidden">
+  <div class="modal-overlay"></div>
+
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Fermer la modale"><i class="fa-solid fa-xmark"></i></button>
+
+    <!-- Vue 1 : Galerie photo -->
+    <div class="modal-view modal-gallery-view">
+      <h3>Galerie photo</h3>
+
+      <div class="modal-gallery">
+        <!-- Ici tu injecteras les miniatures des travaux en JS -->
+      </div>
+
+      <hr class="modal-separator">
+
+      <button id="add-photo-btn" class="modal-main-btn"> Ajouter une photo </button>
+    </div>
+
+    <!-- Vue 2 : Ajout photo -->
+    <div class="modal-view modal-add-view hidden">
+      <button class="modal-back" aria-label="Retour"><i class="fa-solid fa-arrow-left"></i></button>
+      <h3>Ajout photo</h3>
+
+      <form class="modal-form">
+        <div class="upload-zone">
+
+             <i class="fa-regular fa-image upload-icon"></i>
+			 <input type="file" id="file-input" accept="image/png, image/jpeg" hidden>
+
+                  <!-- bouton stylisé cliquable -->
+              <label for="file-input" class="upload-btn">+ Ajouter photo</label>
+         
+          <small>jpg, png • 4mo max</small>
+        </div>
+  
+		
+
+        <label>Titre
+          <input type="text" id="photo-title">
+        </label>
+
+        <label>Catégorie
+          <select id="photo-category">
+            <option value="">Sélectionner une catégorie</option>
+          </select>
+        </label>
+
+        <hr class="modal-separator">
+
+        <button type="submit" class="modal-main-btn">Valider</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 	<section id="contact">
 		<h2>Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>

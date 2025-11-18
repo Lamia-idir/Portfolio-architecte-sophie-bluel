@@ -96,7 +96,6 @@ async function createFilters() {
 }
 
 
-
 /************ 5. Gérer le style "bouton actif" ************/
 function setActiveButton(activeButton) {
   const allButtons = document.querySelectorAll(".filtres button");
@@ -153,3 +152,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // Le lien "login" reste tel qu'il est (Connexion.html)
   }
 });
+
+
+  //     AU CLIQUE SUR LE BOUTON MODIFIER LE MODALE AFFICHE 
+
+document.addEventListener("DOMContentLoaded", () => {
+  const editBtn = document.getElementById("edit-btn");
+  const modal   = document.getElementById("modal");
+
+  console.log("editBtn =", editBtn);
+  console.log("modal =", modal);
+
+  if (!editBtn || !modal) {
+    console.error("Impossible de trouver le bouton ou la modale dans le DOM");
+    return;
+  }
+
+  function openModal() {
+    console.log("clic sur modifier, ouverture modale");
+    modal.classList.remove("hidden");
+  }
+
+  editBtn.addEventListener("click", openModal);
+});
+
+
+
+
+
