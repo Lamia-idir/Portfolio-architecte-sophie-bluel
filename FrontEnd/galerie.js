@@ -1,7 +1,5 @@
 
 
-
-
 // AFFICHAGE DYNAMIQUE POUR les filtres et les travaux
 // URL de base de ton API
 const API_BASE_URL = "http://localhost:5678/api";
@@ -153,28 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
-  //     AU CLIQUE SUR LE BOUTON MODIFIER LE MODALE AFFICHE 
-
-document.addEventListener("DOMContentLoaded", () => {
-  const editBtn = document.getElementById("edit-btn");
-  const modal   = document.getElementById("modal");
-
-  console.log("editBtn =", editBtn);
-  console.log("modal =", modal);
-
-  if (!editBtn || !modal) {
-    console.error("Impossible de trouver le bouton ou la modale dans le DOM");
-    return;
-  }
-
-  function openModal() {
-    console.log("clic sur modifier, ouverture modale");
-    modal.classList.remove("hidden");
-  }
-
-  editBtn.addEventListener("click", openModal);
-});
 
 
 

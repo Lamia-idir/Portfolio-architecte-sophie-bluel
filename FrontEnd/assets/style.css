@@ -369,14 +369,13 @@ footer nav ul {
   font-size: 0.9rem;
 }
 
-
 /*      CSS   MODAL */
 
 /* ---------- base ---------- */
 
- /* .hidden {
+     .hidden {
   display: none !important;
-}  */
+}      
 
 /* ---------- overlay + container ---------- */
 
@@ -390,11 +389,11 @@ footer nav ul {
   font-family: inherit;
 }
 
-.modal-overlay {
+ .modal-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.3);
-}
+} 
 
 .modal-content {
   position: relative;
@@ -473,11 +472,11 @@ footer nav ul {
   cursor: pointer;
 }
 
-/* désactivation éventuelle */
-.modal-main-btn:disabled {
+ /* désactivation éventuelle */
+ /* .modal-main-btn:disabled {
   background-color: #a7a7a7;
   cursor: not-allowed;
-}
+}   */
 
 /* ---------- vue Ajout photo ---------- */
 
