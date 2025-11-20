@@ -1,19 +1,22 @@
   // Récupère le nom de la page actuelle
+
   const currentPage = window.location.pathname.split("/").pop();
 
   // Sélectionne tous les liens du menu
+
   const links = document.querySelectorAll("nav a");
 
   links.forEach(link => {
     const linkPage = link.getAttribute("href");
 
-    // Si le lien correspond à la page actuelle → ajoute la classe active
+    // Si le lien correspond à la page actuelle on ajoute la classe active
     if (linkPage === currentPage) {
       link.classList.add("active");
     }
   });
 
 //   connexion admin 
+
 const loginForm = document.getElementById("login-form");
 const errorMsg = document.getElementById("login-error");
 
@@ -36,6 +39,7 @@ loginForm.addEventListener("submit", async (event) => {
     });
 
     if (!response.ok) {
+
       // mauvais identifiants ou autre erreur
       errorMsg.textContent = "E-mail ou mot de passe incorrect.";
       return;
@@ -44,9 +48,11 @@ loginForm.addEventListener("submit", async (event) => {
     const data = await response.json();
 
     // 👉 on stocke le token pour les futures requêtes (modifications, suppression…)
+
     localStorage.setItem("token", data.token);
 
     // 👉 redirection vers la page d’accueil
+    
     window.location.href = "index.html";
 
   } catch (error) {

@@ -1,7 +1,7 @@
 
 
 // AFFICHAGE DYNAMIQUE POUR les filtres et les travaux
-// URL de base de ton API
+// URL de base de  API
 const API_BASE_URL = "http://localhost:5678/api";
 
 // On gardera tous les travaux ici pour pouvoir filtrer sans refaire un fetch à chaque fois
@@ -65,7 +65,7 @@ async function createFilters() {
   // On affiche tout au début
   displayGallery(allWorks);
 
-  // ---- Bouton "Tous" ----
+  //  Bouton Tous
   const btnTous = document.createElement("button");
   btnTous.textContent = "Tous";
   btnTous.classList.add("active");
@@ -76,7 +76,7 @@ async function createFilters() {
     displayGallery(allWorks);
   });
 
-  // ---- Boutons pour chaque catégorie ----
+  //  Boutons pour chaque catégorie 
   categories.forEach(category => {
     const button = document.createElement("button");
     button.textContent = category.name;
@@ -94,14 +94,15 @@ async function createFilters() {
 }
 
 
-/************ 5. Gérer le style "bouton actif" ************/
+       // 5. Gérer le style "bouton actif"
 function setActiveButton(activeButton) {
   const allButtons = document.querySelectorAll(".filtres button");
   allButtons.forEach(btn => btn.classList.remove("active"));
   activeButton.classList.add("active");
 }
 
-/************ 6. Lancer tout au chargement ************/
+        //  6. Lancer tout au chargement 
+
 document.addEventListener("DOMContentLoaded", () => {
   createFilters().catch(err =>
     console.error("Erreur lors de l'initialisation des filtres :", err)
@@ -109,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// --- GESTION DU MODE ÉDITION SUR LA PAGE D'ACCUEIL
+        //  GESTION DU MODE ÉDITION SUR LA PAGE D'ACCUEIL
 
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
@@ -119,22 +120,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const filtres       = document.querySelector(".filtres");     // <div class="filtres"></div>
   const loginLink     = document.querySelector('nav ul li a[href="Connexion.html"]');
 
-  // --- Si l'utilisateur est connecté (token présent) ---
+  // --- Si l'utilisateur est connecté (token présent) 
+
   if (token) {
     // Afficher le bandeau "mode édition" et le bouton "modifier"
     if (editionBanner) editionBanner.classList.remove("hidden");
     if (editArea)      editArea.classList.remove("hidden");
 
     // Cacher les filtres
+
     if (filtres) filtres.classList.add("hidden");
 
-    // Remplacer "login" par "logout"
+    // Remplacer "login" par logout
+
     if (loginLink) {
       loginLink.textContent = "logout";
       loginLink.removeAttribute("href");           // on enlève le lien vers Connexion.html
       loginLink.style.cursor = "pointer";
 
       // Gestion de la déconnexion
+
       loginLink.addEventListener("click", (event) => {
         event.preventDefault();
         localStorage.removeItem("token");          // on supprime le token
@@ -142,12 +147,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-  // --- Si l'utilisateur n'est PAS connecté ---
+  // Si l'utilisateur n'est PAS connecté 
+  
   } else {
     if (editionBanner) editionBanner.classList.add("hidden");
     if (editArea)      editArea.classList.add("hidden");
     if (filtres)       filtres.classList.remove("hidden");
-    // Le lien "login" reste tel qu'il est (Connexion.html)
+
+    // Le lien login reste tel qu'il est (Connexion.html)
   }
 });
 

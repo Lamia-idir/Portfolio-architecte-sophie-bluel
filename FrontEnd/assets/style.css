@@ -147,10 +147,13 @@ li a:hover {
 	grid-row-gap: 20px;
 }
 
-.gallery img {
-	width: 100%;
 
+.gallery img {
+  width: 100%;
+  height: 450px;   /* même hauteur que les images de base */
+  object-fit: cover;
 }
+
 #contact {
 	width: 50%;
 margin: auto;
@@ -387,6 +390,7 @@ footer nav ul {
   justify-content: center;
   align-items: center;
   font-family: inherit;
+  
 }
 
  .modal-overlay {
@@ -512,7 +516,13 @@ footer nav ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+   overflow: hidden;
+  position: relative;
+}
+.upload-zone img {
+  width: 25%;
+  height: 100%;
+  object-fit: cover;   /* Important : remplit sans déformer */
 }
 
 .upload-btn {
@@ -531,4 +541,38 @@ footer nav ul {
 .upload-icon {
   font-size: 60px;
   color: #b9c5cc;
+}
+
+/* CSS POUR LA SUPPRESSION DES TRAVAUX */
+
+.modal-gallery-figure {
+  position: relative;
+}
+
+.modal-trash-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  background: black;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.modal-trash-btn i {
+  font-size: 10px;
+  color: white;
+}
+
+
+/* CSS ERREUR AJOUT DES TRAVAUX */
+.form-error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 10px;
 }
