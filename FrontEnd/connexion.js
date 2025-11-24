@@ -23,7 +23,7 @@ const errorMsg = document.getElementById("login-error");
 loginForm.addEventListener("submit", async (event) => {
   event.preventDefault(); // empêche le rafraîchissement de la page
 
-  errorMsg.textContent = ""; // reset du message d’erreur
+  errorMsg.textContent = "";
 
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -47,11 +47,14 @@ loginForm.addEventListener("submit", async (event) => {
 
     const data = await response.json();
 
-    // 👉 on stocke le token pour les futures requêtes (modifications, suppression…)
+      //  Connexion réussie
+  console.log (" Connexion réussie. Token reçu :", data.token);
+
+    // on stocke le token pour les futures requêtes (modifications, suppression…)
 
     localStorage.setItem("token", data.token);
 
-    // 👉 redirection vers la page d’accueil
+    // redirection vers la page d’accueil
     
     window.location.href = "index.html";
 

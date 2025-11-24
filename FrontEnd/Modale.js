@@ -1,3 +1,4 @@
+
 console.log("JS chargé !");
 
 // Sélecteurs principaux
@@ -21,7 +22,7 @@ const backBtn  = modal.querySelector(".modal-back");           // flèche retour
 // Ouvrir la modale sur la vue Galerie
 
 function openModalOnGallery() {
-  modal.classList.remove("hidden");   // on affiche la modale
+  modal.classList.remove("hidden");       // on affiche la modale
   galleryView.classList.remove("hidden");
   addView.classList.add("hidden");
 }
@@ -283,11 +284,13 @@ async function handleSubmit(event) {
     showError("Merci de remplir tous les champs et de choisir une image.");
     return;
   }
+  
 
   if (!token) {
     showError("Tu dois être connecté·e pour ajouter un projet.");
     return;
   }
+  
 
   const formData = new FormData();
   formData.append("image", file);
@@ -442,3 +445,5 @@ function switchToGalleryView() {
   addView.classList.add("hidden");
   galleryView.classList.remove("hidden");
 }
+
+

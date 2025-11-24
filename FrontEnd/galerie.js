@@ -95,6 +95,7 @@ async function createFilters() {
 
 
        // 5. Gérer le style "bouton actif"
+
 function setActiveButton(activeButton) {
   const allButtons = document.querySelectorAll(".filtres button");
   allButtons.forEach(btn => btn.classList.remove("active"));
@@ -103,12 +104,9 @@ function setActiveButton(activeButton) {
 
         //  6. Lancer tout au chargement 
 
-document.addEventListener("DOMContentLoaded", () => {
-  createFilters().catch(err =>
-    console.error("Erreur lors de l'initialisation des filtres :", err)
-  );
+document.addEventListener("DOMContentLoaded", function() {
+  createFilters();
 });
-
 
         //  GESTION DU MODE ÉDITION SUR LA PAGE D'ACCUEIL
 
@@ -135,8 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (loginLink) {
       loginLink.textContent = "logout";
-      loginLink.removeAttribute("href");           // on enlève le lien vers Connexion.html
-      loginLink.style.cursor = "pointer";
+      // loginLink.removeAttribute("href");           // on enlève le lien vers Connexion.html
+      // loginLink.style.cursor = "pointer";
 
       // Gestion de la déconnexion
 

@@ -403,14 +403,25 @@ footer nav ul {
   position: relative;
   background: #fff;
   border-radius: 10px;
-  max-width: 630px;
-  width: 90%;
-  max-height: 90vh;
-  padding: 30px 60px 40px;
+  /* max-width: 630px; */
+  width: 40%;
+  /* max-height: 90vh; */
+   padding: 20px; 
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
-  overflow-y: auto;
+   overflow-y: auto; 
+  
+  height:90%;
+  /* max-height: calc(100vh - 60px); */
+  /* évite de toucher le haut/bas */
+  /* box-sizing: border-box; */
 }
 
+  .modal-view {
+  /* width: 100%; */
+  /* min-height: 520px;              */
+  padding: 20px;
+
+}  
 /* ---------- boutons de contrôle ---------- */
 
 .modal-close {
@@ -460,7 +471,7 @@ footer nav ul {
 .modal-separator {
   border: none;
   border-top: 1px solid #b3b3b3;
-  margin: 30px 0 25px;
+  margin: 20px 0 25px; 
 }
 
 /* gros bouton vert */
@@ -511,7 +522,7 @@ footer nav ul {
 .upload-zone {
   background: #e8f1f6;
   border-radius: 3px;
-  height: 170px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
