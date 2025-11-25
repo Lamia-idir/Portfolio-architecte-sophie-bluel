@@ -23,25 +23,26 @@ const backBtn  = modal.querySelector(".modal-back");           // flèche retour
 
 function openModalOnGallery() {
   modal.classList.remove("hidden");       // on affiche la modale
-  galleryView.classList.remove("hidden");
-  addView.classList.add("hidden");
+  galleryView.classList.remove("hidden");  // on montre lma vue galerie
+  addView.classList.add("hidden");         // on cache la vue ajout
 }
 
 // Fermer complètement la modale
 function closeModal() {
-  modal.classList.add("hidden");
+  modal.classList.add("hidden");     //  Cache la modale 
 }
 
-// Afficher la vue Ajout photo
+// Afficher la vue Ajout photo 
+
 function showAddView() {
-  galleryView.classList.add("hidden");
-  addView.classList.remove("hidden");
+  galleryView.classList.add("hidden");   // on cache la vue galerie
+  addView.classList.remove("hidden");     // on affiche la vue ajout
 }
 
 // Revenir à la vue Galerie
 function showGalleryView() {
-  addView.classList.add("hidden");
-  galleryView.classList.remove("hidden");
+  addView.classList.add("hidden");         // on cache la vue ajout
+  galleryView.classList.remove("hidden");   // on montre  la vue galerie
 }
 
 // --- Écouteurs d'événements 
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-//  RÉCUPÉRATION DES TRAVAUX
+//  RÉCUPÉRATION DES TRAVAUX -  puis les afficher dans la gallerie 
 
 async function loadModalGallery() {
   try {
@@ -95,7 +96,6 @@ async function loadModalGallery() {
     console.error("Erreur réseau GET /works :", err);
   }
 }
-
 
 //  SUPPRESSION PROJET 
 
@@ -143,14 +143,14 @@ function generateModalGallery(works) {
 
     const img = document.createElement("img");
     img.src = work.imageUrl;
-    img.alt = work.title;
+    img.alt = work.title; 
 
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("modal-trash-btn");
     deleteBtn.setAttribute("aria-label", "Supprimer le projet");
     deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
 
-    //  clic sur la poubelle
+    //  clic sur la corbeille
 
     deleteBtn.addEventListener("click", async (event) => {
       event.preventDefault();
@@ -219,8 +219,8 @@ async function loadCategories() {
 
     categories.forEach(cat => {
       const option = document.createElement("option");
-      option.value = cat.id;         // important pour l'API
-      option.textContent = cat.name; // ce que voit l'utilisateur
+      option.value = cat.id;            // important pour l'API
+      option.textContent = cat.name;   // ce que voit l'utilisateur
       categorySelect.appendChild(option);
     });
   } catch (err) {
@@ -337,7 +337,6 @@ async function handleSubmit(event) {
   }
 }
 
-
 // 3. Affichage / reset des erreurs
 
 function showError(message) {
@@ -353,7 +352,6 @@ function clearError() {
     errorMsg.textContent = "";
   }
 }
-
 
 // 4. Réinitialiser le formulaire après succès
 
