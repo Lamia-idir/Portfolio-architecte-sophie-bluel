@@ -139,13 +139,13 @@ function generateModalGallery(works) {
   works.forEach(work => {
     const figure = document.createElement("figure");
     figure.classList.add("modal-gallery-figure");
-    figure.dataset.id = work.id;
+    figure.dataset.id = work.id;          // ajout attribut qui recupère le ID du work
 
     const img = document.createElement("img");
     img.src = work.imageUrl;
     img.alt = work.title; 
-
-    const deleteBtn = document.createElement("button");
+                               
+    const deleteBtn = document.createElement("button");   //Créer les bouttons de la supression 
     deleteBtn.classList.add("modal-trash-btn");
     deleteBtn.setAttribute("aria-label", "Supprimer le projet");
     deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
@@ -162,9 +162,7 @@ function generateModalGallery(works) {
         figure.remove();
 
         // 2. On enlève aussi l’élément de la galerie principale
-        const mainFigure = document.querySelector(
-          `.gallery figure[data-id="${work.id}"]`
-        );
+        const mainFigure = document.querySelector(`.gallery figure[data-id="${work.id}"]`);
         if (mainFigure) mainFigure.remove();
       }
     });
@@ -174,8 +172,6 @@ function generateModalGallery(works) {
     modalGallery.appendChild(figure);
   });
 }
-
-
 
 
 //    AJOUT PREOJET 
@@ -239,7 +235,6 @@ function setupAddForm() {
   addForm.addEventListener("submit", handleSubmit);
 }
 
-
 // 2.a Preview de l'image choisie
 
 function handlePreview() {
@@ -260,12 +255,9 @@ function handlePreview() {
   uploadZone.innerHTML = "";
 
   const img = document.createElement("img");
-  img.src = URL.createObjectURL(file);
-  img.classList.add("preview-image");
-
+  img.src = URL.createObjectURL(file);   //afficher l'image dans la zonz après l'ajout
   uploadZone.appendChild(img);
 }
-
 
 // 2.b Envoi du formulaire à l'API
 
