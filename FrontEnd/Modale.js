@@ -229,16 +229,16 @@ async function loadCategories() {
 
 function setupAddForm() {
   // Preview quand on choisit une image
-  fileInput.addEventListener("change", handlePreview);
+  fileInput.addEventListener("change", handlePreview);     //fonction qui gère l'apercu de l'image 
 
   // Envoi du formulaire
-  addForm.addEventListener("submit", handleSubmit);
+  addForm.addEventListener("submit", handleSubmit);      // fonction qui gère l'envoi du projet
 }
 
 // 2.a Preview de l'image choisie
 
 function handlePreview() {
-  const file = fileInput.files[0];
+  const file = fileInput.files[0];      //récuperer l'image choisi 
   if (!file) return;
 
   // Option : vérifier taille max 4 Mo
@@ -246,7 +246,7 @@ function handlePreview() {
   const maxSize = 4 * 1024 * 1024;
   if (file.size > maxSize) {
     showError("L'image dépasse 4 Mo.");
-    fileInput.value = "";
+    fileInput.value = "";             
     return;
   }
 
@@ -255,19 +255,19 @@ function handlePreview() {
   uploadZone.innerHTML = "";
 
   const img = document.createElement("img");
-  img.src = URL.createObjectURL(file);   //afficher l'image dans la zonz après l'ajout
-  uploadZone.appendChild(img);
+  img.src = URL.createObjectURL(file);     //afficher l'image dans la zonz après l'ajout
+  uploadZone.appendChild(img);  
 }
 
 // 2.b Envoi du formulaire à l'API
 
-async function handleSubmit(event) {
+async function handleSubmit(event) {                
   event.preventDefault();
   clearError();
 
-  const file = fileInput.files[0];
-  const title = titleInput.value.trim();
-  const category = categorySelect.value;
+  const file = fileInput.files[0];          //on récupère l'image 
+  const title = titleInput.value.trim();         // on récupère le titre
+  const category = categorySelect.value;          //On récupère la catégorie 
   const token = localStorage.getItem("token");
 
   // Vérifications
