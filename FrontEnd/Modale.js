@@ -62,11 +62,17 @@ backBtn.addEventListener("click", (e) => {
   showGalleryView();
 });
 
-// Clic sur la croix pour fermer la modale
-closeBtn.addEventListener("click", closeModal);
+// Clic sur la croix pour fermer la modale 
+closeBtn.addEventListener("click", () => {
+  closeModal();
+  clearError();
+});
 
 // Clic sur l'overlay pour fermer la modale
-overlay.addEventListener("click", closeModal);
+overlay.addEventListener("click", () => {
+  closeModal();
+  clearError();
+});
 
 
 
@@ -284,7 +290,7 @@ async function handleSubmit(event) {
   }
   
 
-  const formData = new FormData();
+  const formData = new FormData();       
   formData.append("image", file);
   formData.append("title", title);
   formData.append("category", category);
@@ -321,7 +327,8 @@ async function handleSubmit(event) {
     resetAddForm();
 
     // 4. Revenir à la vue "Galerie photo" de la modale si tu veux
-    switchToGalleryView();
+
+     switchToGalleryView();
 
   } catch (err) {
     console.error("Erreur réseau POST /works :", err);
