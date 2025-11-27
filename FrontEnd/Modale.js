@@ -78,7 +78,6 @@ overlay.addEventListener("click", () => {
 
 // Fonction qui gere la suppression des travaux
 
-
 const API_URL = "http://localhost:5678/api/works";
 
 //  INIT
@@ -86,6 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
   loadModalGallery();
 });
 
+
+//      Fonction ajout gallery et suppression
 
 //  RÉCUPÉRATION DES TRAVAUX -  puis les afficher dans la gallerie 
 
@@ -354,18 +355,18 @@ function clearError() {
 
 // 4. Réinitialiser le formulaire après succès
 
-function resetAddForm() {
-  addForm.reset();
+function resetAddForm() {               
+  addForm.reset();                    // Vider le formulaire 
   clearError();
 
-  // remettre la zone d'upload dans son état initial
+  // remettre la zone d'upload dans son état initial aprèsla validation.
 
   uploadZone.innerHTML = `
     <i class="fa-regular fa-image upload-icon"></i>
     <input type="file" id="file-input" accept="image/png, image/jpeg" hidden>
     <label for="file-input" class="upload-btn">+ Ajouter photo</label>
     <small>jpg, png • 4mo max</small>
-  `;
+  `;      // retire l'image 
 
   //  Il faut ré-attacher l'event "change" sur le nouveau input
 
