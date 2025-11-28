@@ -588,3 +588,28 @@ footer nav ul {
   font-size: 0.9rem;
   margin-top: 10px;
 }
+
+
+   /* --- Notification de succès --- */
+
+/* Le formulaire dans la modale */
+
+.modal-form {
+  position: relative; /*  nécessaire pour positionner le message à l'intérieur */
+}
+
+/* Message de succès */
+.form-success {
+  position: absolute;
+  bottom: 20px;           /* ou top: 10px; si tu le veux en haut */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #97ac98;
+  color: #0c0c0c;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+}

@@ -311,6 +311,7 @@ async function handleSubmit(event) {
 
     function showSuccessMessage(msg) {
   const success = document.createElement("p");
+  success.className = "form-success"; 
   success.textContent = msg;
   success.style.color = "green";
   success.style.marginTop = "10px";
@@ -321,7 +322,7 @@ async function handleSubmit(event) {
   // Le message disparaît après 3 secondes
   setTimeout(() => {
     success.remove();
-  }, 3000);
+  }, 2000);
 }
 
 
@@ -333,6 +334,7 @@ async function handleSubmit(event) {
 
     const newWork = await res.json();
     console.log("Nouveau projet ajouté :", newWork);
+
 
     // Vérifie que l’API a bien renvoyé un objet avec un id
   if (newWork && newWork.id) {
