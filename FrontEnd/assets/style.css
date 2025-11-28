@@ -530,6 +530,8 @@ footer nav ul {
   justify-content: center;
    overflow: hidden;
   position: relative;
+  padding-top: 10px ;
+  padding-bottom: 10px ;
 }
 .upload-zone img {
   width: 25%;
