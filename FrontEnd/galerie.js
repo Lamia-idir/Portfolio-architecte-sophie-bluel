@@ -28,13 +28,14 @@ async function getCategories() {
 }
 
 /************ 3. Afficher une liste de travaux ************/
+
 function displayGallery(works) {
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";
 
   works.forEach(work => {
     const figure = document.createElement("figure");
-    figure.dataset.id = work.id; 
+    figure.dataset.id = work.id;    
 
     const img = document.createElement("img");
     img.src = work.imageUrl;
@@ -50,21 +51,19 @@ function displayGallery(works) {
 }
 
 /************ 4. Créer dynamiquement les filtres ************/
+
 async function createFilters() {
   const filtresContainer = document.querySelector(".filtres");
   filtresContainer.innerHTML = ""; // au cas où
 
   // On récupère en parallèle catégories + travaux
-  const [categories, works] = await Promise.all([
-    getCategories(),
-    getWorks()
-  ]);
+  const [categories, works] = await Promise.all([getCategories(), getWorks()]);
 
   // On garde tous les travaux en mémoire
   allWorks = works;
 
-  // On affiche tout au début
-  displayGallery(allWorks);
+           // On affiche tout au début
+  displayGallery(allWorks);                 // afficher tous les travaux dansla gallerie
 
   //  Bouton Tous
   const btnTous = document.createElement("button");
@@ -86,9 +85,7 @@ async function createFilters() {
     button.addEventListener("click", () => {
       setActiveButton(button);
 
-      const filtered = allWorks.filter(
-        work => work.categoryId === category.id
-      );
+      const filtered = allWorks.filter(work => work.categoryId === category.id);
       displayGallery(filtered);
     });
   });
