@@ -34,13 +34,13 @@ function closeModal() {
 
 // Afficher la vue Ajout photo 
 
-function showAddView() {
+function showAddView() {                          //    montre madale 2
   galleryView.classList.add("hidden");   // on cache la vue galerie
   addView.classList.remove("hidden");     // on affiche la vue ajout
 }
 
 // Revenir à la vue Galerie
-function showGalleryView() {
+function showGalleryView() {                          //montre modale 1
   addView.classList.add("hidden");         // on cache la vue ajout
   galleryView.classList.remove("hidden");   // on montre  la vue galerie
 }
@@ -76,11 +76,10 @@ overlay.addEventListener("click", () => {
 
 
 
-// Fonction qui gere la suppression des travaux
-
 const API_URL = "http://localhost:5678/api/works";
 
-//  INIT
+// Initialise la galerie du modal dès que le HTML est chargé
+
 document.addEventListener("DOMContentLoaded", () => {
   loadModalGallery();
 });
@@ -307,6 +306,25 @@ async function handleSubmit(event) {
       body: formData
     });
 
+
+    // Fonction qui affiche que le projet est rajouté si API OK
+
+    function showSuccessMessage(msg) {
+  const success = document.createElement("p");
+  success.textContent = msg;
+  success.style.color = "green";
+  success.style.marginTop = "10px";
+  success.style.fontWeight = "bold";
+
+  addForm.appendChild(success);
+
+  // Le message disparaît après 3 secondes
+  setTimeout(() => {
+    success.remove();
+  }, 3000);
+}
+
+
     if (!res.ok) {
       console.error("Erreur POST /works :", res.status);
       showError("Erreur lors de l'envoi du formulaire.");
@@ -315,6 +333,18 @@ async function handleSubmit(event) {
 
     const newWork = await res.json();
     console.log("Nouveau projet ajouté :", newWork);
+
+    // Vérifie que l’API a bien renvoyé un objet avec un id
+  if (newWork && newWork.id) {
+
+  // ✔ Message de confirmation
+  showSuccessMessage("Le projet a été ajouté avec succès !");
+
+  addForm.reset();
+  uploadZone.innerHTML = ""; // Si tu as une zone d’aperçu
+  } else {
+  showError("L'API n'a pas renvoyé une réponse valide.");
+  }
 
     // 1. Ajout dans la galerie principale
 
@@ -329,7 +359,7 @@ async function handleSubmit(event) {
 
     // 4. Revenir à la vue "Galerie photo" de la modale si tu veux
 
-     switchToGalleryView();
+    //  switchToGalleryView();
 
   } catch (err) {
     console.error("Erreur réseau POST /works :", err);
@@ -431,17 +461,16 @@ function addWorkToModalGallery(work) {
   modalGallery.appendChild(figure);
 }
 
-
 // 6. Revenir à la vue "Galerie photo" de la modale
 
-function switchToGalleryView() {
-  const galleryView = document.querySelector(".modal-gallery-view");
-  const addView = document.querySelector(".modal-add-view");
+// function switchToGalleryView() {
+//   const galleryView = document.querySelector(".modal-gallery-view");
+//   const addView = document.querySelector(".modal-add-view");
 
-  if (!galleryView || !addView) return;
+//   if (!galleryView || !addView) return;
 
-  addView.classList.add("hidden");
-  galleryView.classList.remove("hidden");
-}
+//   addView.classList.add("hidden");
+//   galleryView.classList.remove("hidden");
+// }
 
 
