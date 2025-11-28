@@ -120,19 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (token) {
     // Afficher le bandeau "mode édition" et le bouton "modifier"
-    if (editionBanner) editionBanner.classList.remove("hidden");
-    if (editArea)      editArea.classList.remove("hidden");
+   editionBanner.classList.remove("hidden");  //afficher mode edition 
+   editArea.classList.remove("hidden");   //afficher boutton mofifier 
+   filtres.classList.add("hidden");     // Cacher les filtres
 
-    // Cacher les filtres
-
-    if (filtres) filtres.classList.add("hidden");
-
-    // Remplacer "login" par logout
-
-    if (loginLink) {
-      loginLink.textContent = "logout";
-      // loginLink.removeAttribute("href");           // on enlève le lien vers Connexion.html
-      // loginLink.style.cursor = "pointer";
+    loginLink.textContent = "logout";    // Remplacer "login" par logout
 
       // Gestion de la déconnexion
 
@@ -141,8 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.removeItem("token");          // on supprime le token
         window.location.href = "index.html";       // on recharge la page en mode visiteur
       });
-    }
-
+    
   // Si l'utilisateur n'est PAS connecté 
   
   } else {
