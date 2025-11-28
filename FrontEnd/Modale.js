@@ -7,7 +7,7 @@ const modal        = document.getElementById("modal");             // conteneur 
 const overlay      = modal.querySelector(".modal-overlay");        // clic extérieur
 const closeBtn     = modal.querySelector(".modal-close");          // bouton croix
 
-// Les deux "vues" à l'intérieur de la modale
+// Les deux vues à l'intérieur de la modale
 
 const galleryView  = modal.querySelector(".modal-gallery-view");   // vue Galerie photo
 const addView      = modal.querySelector(".modal-add-view");       // vue Ajout photo
@@ -74,8 +74,6 @@ overlay.addEventListener("click", () => {
   clearError();
 });
 
-
-
 const API_URL = "http://localhost:5678/api/works";
 
 // Initialise la galerie du modal dès que le HTML est chargé
@@ -83,7 +81,6 @@ const API_URL = "http://localhost:5678/api/works";
 document.addEventListener("DOMContentLoaded", () => {
   loadModalGallery();
 });
-
 
 //      Fonction ajout gallery et suppression
 
@@ -179,9 +176,7 @@ function generateModalGallery(works) {
   });
 }
 
-
 //    AJOUT PREOJET 
-
 
 // CONFIG
 
@@ -202,7 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
   loadCategories();
   setupAddForm();
 });
-
 
 // 1. Charger les catégories depuis l'API
 
@@ -313,10 +307,6 @@ async function handleSubmit(event) {
   const success = document.createElement("p");
   success.className = "form-success"; 
   success.textContent = msg;
-  success.style.color = "green";
-  success.style.marginTop = "10px";
-  success.style.fontWeight = "bold";
-
   addForm.appendChild(success);
 
   // Le message disparaît après 3 secondes
