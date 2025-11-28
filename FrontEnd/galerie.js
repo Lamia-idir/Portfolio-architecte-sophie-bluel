@@ -90,8 +90,6 @@ async function createFilters() {
     });
   });
 }
-
-
        // 5. Gérer le style "bouton actif"
 
 function setActiveButton(activeButton) {
@@ -99,7 +97,6 @@ function setActiveButton(activeButton) {
   allButtons.forEach(btn => btn.classList.remove("active"));
   activeButton.classList.add("active");
 }
-
         //  6. Lancer tout au chargement 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -120,28 +117,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (token) {
     // Afficher le bandeau "mode édition" et le bouton "modifier"
-   editionBanner.classList.remove("hidden");  //afficher mode edition 
-   editArea.classList.remove("hidden");   //afficher boutton mofifier 
-   filtres.classList.add("hidden");     // Cacher les filtres
+     editionBanner.classList.remove("hidden");  //afficher mode edition 
+      editArea.classList.remove("hidden");   //afficher le bouton modifier 
 
-    loginLink.textContent = "logout";    // Remplacer "login" par logout
+     filtres.classList.add("hidden");     // Cacher les filtres
+     loginLink.textContent = "logout";    // Remplacer "login" par logout
 
-      // Gestion de la déconnexion
-
-      loginLink.addEventListener("click", (event) => {
+     loginLink.addEventListener("click", (event) => {      // Gestion de la déconnexion
         event.preventDefault();
         localStorage.removeItem("token");          // on supprime le token
         window.location.href = "index.html";       // on recharge la page en mode visiteur
       });
     
-  // Si l'utilisateur n'est PAS connecté 
-  
-  } else {
+  } else {                                          // Si l'utilisateur n'est PAS connecté 
     if (editionBanner) editionBanner.classList.add("hidden");
     if (editArea)      editArea.classList.add("hidden");
     if (filtres)       filtres.classList.remove("hidden");
-
-    // Le lien login reste tel qu'il est (Connexion.html)
   }
 });
 
