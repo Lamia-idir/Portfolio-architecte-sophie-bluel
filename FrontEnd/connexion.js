@@ -1,7 +1,7 @@
   // Récupère le nom de la page actuelle
 
   const currentPage = window.location.pathname.split("/").pop();
-
+ 
   // Sélectionne tous les liens du menu
 
   const links = document.querySelectorAll("nav a");

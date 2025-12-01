@@ -183,18 +183,18 @@ function generateModalGallery(works) {
 const API_WORKS = "http://localhost:5678/api/works";
 const API_CATEGORIES = "http://localhost:5678/api/categories";
 
-const addForm = document.querySelector(".modal-form");
-const fileInput = document.getElementById("file-input");
-const titleInput = document.getElementById("photo-title");
-const categorySelect = document.getElementById("photo-category");
-const uploadZone = document.querySelector(".upload-zone");
-const errorMsg = document.getElementById("form-error");
+const addForm = document.querySelector(".modal-form");     // formulaire de 2 eme vue de modal
+const fileInput = document.getElementById("file-input");   //zone ajout photo  
+const titleInput = document.getElementById("photo-title");  
+const categorySelect = document.getElementById("photo-category"); 
+const uploadZone = document.querySelector(".upload-zone");        
+const errorMsg = document.getElementById("form-error");        
 
 
 // INIT AU CHARGEMENT
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadCategories();
+  loadCategories();    //Charger les categories depuis l'API
   setupAddForm();
 });
 
@@ -215,7 +215,7 @@ async function loadCategories() {
 
     categories.forEach(cat => {
       const option = document.createElement("option");
-      option.value = cat.id;            // important pour l'API
+      option.value = cat.id;            // important pour l'API pour savoir quel categorie choisi
       option.textContent = cat.name;   // ce que voit l'utilisateur
       categorySelect.appendChild(option);
     });
@@ -224,16 +224,16 @@ async function loadCategories() {
   }
 }
 
-
 // 2. Configuration du formulaire (preview + submit)
 
-function setupAddForm() {
+function setupAddForm() {            //initialiser le formulaire 
+
   // Preview quand on choisit une image
   fileInput.addEventListener("change", handlePreview);     //fonction qui gère l'apercu de l'image 
-
+                                       //afficher l'aperçu de l'image avant l'envoie
   // Envoi du formulaire
   addForm.addEventListener("submit", handleSubmit);      // fonction qui gère l'envoi du projet
-}
+}                                 //envoyer le projet à l'api
 
 // 2.a Preview de l'image choisie
 
@@ -259,6 +259,20 @@ function handlePreview() {
   uploadZone.appendChild(img);  
 }
 
+function showError(message) {      // 3. Affichage / reset des erreurs
+  if (errorMsg) {
+    errorMsg.textContent = message;
+  } else {
+    alert(message);
+  }
+}
+
+function clearError() {
+  if (errorMsg) {
+    errorMsg.textContent = "";
+  }
+}
+
 // 2.b Envoi du formulaire à l'API
 
 async function handleSubmit(event) {                
@@ -277,12 +291,10 @@ async function handleSubmit(event) {
     return;
   }
   
-
   if (!token) {
     showError("Tu dois être connecté·e pour ajouter un projet.");
     return;
   }
-  
 
   const formData = new FormData();       
   formData.append("image", file);
@@ -299,7 +311,6 @@ async function handleSubmit(event) {
       },
       body: formData
     });
-
 
     // Fonction qui affiche que le projet est rajouté si API OK
 
@@ -325,33 +336,23 @@ async function handleSubmit(event) {
     const newWork = await res.json();
     console.log("Nouveau projet ajouté :", newWork);
 
+     
+  if (newWork && newWork.id) {    // Vérifie que l’API a bien renvoyé un objet avec un id
 
-    // Vérifie que l’API a bien renvoyé un objet avec un id
-  if (newWork && newWork.id) {
-
-  // ✔ Message de confirmation
-  showSuccessMessage("Le projet a été ajouté avec succès !");
+  showSuccessMessage("Le projet a été ajouté avec succès !");     // ✔ Message de confirmation
 
   addForm.reset();
   uploadZone.innerHTML = ""; // Si tu as une zone d’aperçu
   } else {
   showError("L'API n'a pas renvoyé une réponse valide.");
   }
+    addWorkToMainGallery(newWork);      // 1. Ajout dans la galerie principale
 
-    // 1. Ajout dans la galerie principale
+    addWorkToModalGallery(newWork);    // 2. Ajout dans la galerie de la modale
 
-    addWorkToMainGallery(newWork);
+    resetAddForm();                   // 3. Réinitialiser le formulaire
 
-    // 2. Ajout dans la galerie de la modale
-
-    addWorkToModalGallery(newWork);
-
-    // 3. Réinitialiser le formulaire
-    resetAddForm();
-
-    // 4. Revenir à la vue "Galerie photo" de la modale si tu veux
-
-    //  switchToGalleryView();
+    //  switchToGalleryView();      // 4. Revenir à la vue "Galerie photo" de la modale si tu veux
 
   } catch (err) {
     console.error("Erreur réseau POST /works :", err);
@@ -360,29 +361,25 @@ async function handleSubmit(event) {
 }
 
 // 3. Affichage / reset des erreurs
+// function showError(message) {      
+//   if (errorMsg) {
+//     errorMsg.textContent = message;
+//   } else {
+//     alert(message);
+//   }
+// }
 
-function showError(message) {
-  if (errorMsg) {
-    errorMsg.textContent = message;
-  } else {
-    alert(message);
-  }
-}
+// function clearError() {
+//   if (errorMsg) {
+//     errorMsg.textContent = "";
+//   }
+// }
 
-function clearError() {
-  if (errorMsg) {
-    errorMsg.textContent = "";
-  }
-}
-
-// 4. Réinitialiser le formulaire après succès
-
-function resetAddForm() {               
+function resetAddForm() {                        // 4. Réinitialiser le formulaire après succès
   addForm.reset();                    // Vider le formulaire 
   clearError();
 
-  // remettre la zone d'upload dans son état initial aprèsla validation.
-
+          // remettre la zone d'upload dans son état initial aprèsla validation.
   uploadZone.innerHTML = `
     <i class="fa-regular fa-image upload-icon"></i>
     <input type="file" id="file-input" accept="image/png, image/jpeg" hidden>
@@ -391,15 +388,11 @@ function resetAddForm() {
   `;      // retire l'image 
 
   //  Il faut ré-attacher l'event "change" sur le nouveau input
-
-  const newFileInput = document.getElementById("file-input");
+  const newFileInput = document.getElementById("file-input"); 
   newFileInput.addEventListener("change", handlePreview);
 }
 
-
-// 5. Ajouter le nouveau projet dans les deux galeries
-
-function addWorkToMainGallery(work) {
+function addWorkToMainGallery(work) {    // 5. Ajouter le nouveau projet dans les deux galeries
   const gallery = document.querySelector(".gallery");
   if (!gallery) return;
 
@@ -437,6 +430,8 @@ function addWorkToModalGallery(work) {
   deleteBtn.setAttribute("aria-label", "Supprimer le projet");
   deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
 
+//------------------------------------------------------
+
   // même logique de delete que pour les autres
 
   deleteBtn.addEventListener("click", async () => {
@@ -452,6 +447,7 @@ function addWorkToModalGallery(work) {
   figure.appendChild(deleteBtn);
   modalGallery.appendChild(figure);
 }
+
 
 // 6. Revenir à la vue "Galerie photo" de la modale
 
