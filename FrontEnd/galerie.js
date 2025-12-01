@@ -100,7 +100,7 @@ function setActiveButton(activeButton) {
         //  6. Lancer tout au chargement 
 
 document.addEventListener("DOMContentLoaded", function() {
-  createFilters();
+  createFilters();  
 });
 
         //  GESTION DU MODE ÉDITION SUR LA PAGE D'ACCUEIL
@@ -130,9 +130,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     
   } else {                                          // Si l'utilisateur n'est PAS connecté 
-    if (editionBanner) editionBanner.classList.add("hidden");
-    if (editArea)      editArea.classList.add("hidden");
-    if (filtres)       filtres.classList.remove("hidden");
+    editionBanner.classList.add("hidden");
+    editArea.classList.add("hidden");
+    filtres.classList.remove("hidden");
   }
 });
 
