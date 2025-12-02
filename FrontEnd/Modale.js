@@ -320,7 +320,7 @@ async function handleSubmit(event) {
   success.textContent = msg;
   addForm.appendChild(success);
 
-  // Le message disparaît après 3 secondes
+  // Le message disparaît après 2 secondes
   setTimeout(() => {
     success.remove();
   }, 2000);
