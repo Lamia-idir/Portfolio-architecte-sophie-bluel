@@ -195,7 +195,7 @@ const errorMsg = document.getElementById("form-error");
 
 document.addEventListener("DOMContentLoaded", () => {
   loadCategories();    //Charger les categories depuis l'API
-  setupAddForm();
+  setupAddForm();       // Initialiser le formulaire d’ajout d’un projet 
 });
 
 // 1. Charger les catégories depuis l'API
