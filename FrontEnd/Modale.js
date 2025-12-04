@@ -339,9 +339,9 @@ async function handleSubmit(event) {
      
   if (newWork && newWork.id) {    // Vérifie que l’API a bien renvoyé un objet avec un id
 
-  showSuccessMessage("Le projet a été ajouté avec succès !");     // ✔ Message de confirmation
+  showSuccessMessage("Le projet a été ajouté avec succès !");     //  Message de confirmation
 
-  addForm.reset();
+  addForm.reset();     // vider les champs du formulaire 
   uploadZone.innerHTML = ""; // Si tu as une zone d’aperçu
   } else {
   showError("L'API n'a pas renvoyé une réponse valide.");
@@ -351,6 +351,9 @@ async function handleSubmit(event) {
     addWorkToModalGallery(newWork);    // 2. Ajout dans la galerie de la modale
 
     resetAddForm();                   // 3. Réinitialiser le formulaire
+
+    closeModal();
+
 
     //  switchToGalleryView();      // 4. Revenir à la vue "Galerie photo" de la modale si tu veux
 
